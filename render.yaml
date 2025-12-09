@@ -1,0 +1,15 @@
+services:
+  - type: web
+    name: telegram-media-downloader
+    runtime: python
+    env: python
+    region: frankfurt        # أو أي منطقة قريبة
+    plan: free
+    buildCommand: |
+      pip install -r requirements.txt
+      playwright install-deps chromium
+      playwright install chromium
+    startCommand: python bot.py
+    envVars:
+      - key: BOT_TOKEN
+        sync: false
